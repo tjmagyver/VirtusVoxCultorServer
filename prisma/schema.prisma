@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Audiobook {
+  id        String    @id @default(uuid())
+  title     String
+  cover     String
+  duration  Int
+  sinopse   String
+  publisher String
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt
+  chapters  Chapter[]
+
+  @@map("audiobooks")
+}
+
+model Chapter {
+  id          String    @id @default(uuid())
+  title       String
+  duration    Int
+  file        String
+  audiobookId String
+  audiobook   Audiobook @relation(fields: [audiobookId], references: [id])
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt
+
+  @@map("chapters")
+}
