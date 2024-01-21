@@ -4,11 +4,11 @@ import { Controller, Delete, Param } from "@nestjs/common";
 
 @Controller('/chapters')
 @Public()
-export class RemoveOneChapterController {
+export class DeleteFileChapterController {
   constructor(private chapter: ChapterService) { }
 
-  @Delete(':id')
-  async handle(@Param('id') id: string) {
-    return this.chapter.remove(id)
+  @Delete('delete/:fileName')
+  async handle(@Param('fileName') fileName: string): Promise<Buffer> {
+    return this.chapter.delete(fileName)
   }
 }

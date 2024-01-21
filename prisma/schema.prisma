@@ -13,6 +13,7 @@ model User {
   name      String?
   username  String
   password  String
+  isSigned  Boolean  @default(false) @map("is_signed")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt
 
@@ -20,15 +21,19 @@ model User {
 }
 
 model Audiobook {
-  id        String    @id @default(uuid())
-  title     String    @unique
-  cover     String
-  duration  Int
-  sinopse   String
-  publisher String
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime  @updatedAt
-  chapters  Chapter[]
+  id               String    @id @default(uuid())
+  title            String    @unique
+  cover            String
+  duration         Int
+  sinopse          String
+  publisher        String
+  linkPurchase     String    @map("link_purchase")
+  isVisible        Boolean   @default(true) @map("is_visible")
+  isPrivate        Boolean   @default(true) @map("is_private")
+  numberOfChapters Int       @default(1) @map("number_of_chapters")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt
+  chapters         Chapter[]
 
   @@map("audiobooks")
 }

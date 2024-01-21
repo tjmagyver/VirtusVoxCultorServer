@@ -1,4 +1,3 @@
-import { CreateAccountController } from '@/controllers/accounts/create-account.controller';
 import { AuthenticateController } from '@/controllers/auth/authenticate.controller';
 import { Env } from '@/env';
 import { Module } from '@nestjs/common';
@@ -28,7 +27,7 @@ import { JwtStrategy } from './jwt.strategy';
   ],
   providers: [JwtStrategy, PrismaService],
   controllers: [
-    CreateAccountController, AuthenticateController
+    AuthenticateController,
   ],
 })
 export class AuthModule { }

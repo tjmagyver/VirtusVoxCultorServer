@@ -1,3 +1,4 @@
+import { Public } from "@/auth/public";
 import { ChapterService } from "@/chapter/chapter.service";
 import { Controller, Get, Param } from "@nestjs/common";
 import { AudiobookData } from './../audiobook/find-all-audiobooks.controller';
@@ -14,6 +15,7 @@ export type ChapterData = {
 }
 
 @Controller('/chapters')
+@Public()
 export class FindOneChapterController {
   constructor(private chapter: ChapterService) { }
 

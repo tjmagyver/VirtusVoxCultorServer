@@ -17,11 +17,6 @@ export class UploadChapterController {
       ],
     }),
   ) file: Express.Multer.File) {
-    // const audioUrl = await this.chapter.uploadAudio(file);
-
-    // return { url: audioUrl };
-    console.log(file)
-
     const { originalname, mimetype, buffer } = file
 
     const url = this.chapter.upload({

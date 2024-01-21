@@ -1,3 +1,4 @@
+import { Public } from "@/auth/public";
 import { ChapterService } from "@/chapter/chapter.service";
 import { Body, Controller, Post, UsePipes } from "@nestjs/common";
 import { ZodValidationPipe } from "src/pipes/zod-validation-pipe";
@@ -13,6 +14,7 @@ const createChapterBodySchema = z.object({
 export type CreateChapterBodySchema = z.infer<typeof createChapterBodySchema>
 
 @Controller('/chapters')
+@Public()
 export class CreateChapterController {
   constructor(private chapter: ChapterService) { }
 

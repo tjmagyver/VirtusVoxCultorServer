@@ -1,4 +1,5 @@
 import { AudiobookService } from '@/audiobook/audiobook.service';
+import { Public } from '@/auth/public';
 import { Controller, Get, Param } from "@nestjs/common";
 
 type AudiobookData = {
@@ -13,6 +14,7 @@ type AudiobookData = {
 }
 
 @Controller('/audiobooks')
+@Public()
 export class FindOneAudiobookController {
   constructor(private audiobook: AudiobookService) { }
 

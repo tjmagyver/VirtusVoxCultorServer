@@ -1,6 +1,10 @@
+import { ChapterService } from '@/chapter/chapter.service';
 import { CreateAudiobookController } from '@/controllers/audiobook/create-audiobook.controller';
 import { FindAllAudiobooksController } from '@/controllers/audiobook/find-all-audiobooks.controller';
+import { FindAllChaptersAudiobookIdController } from '@/controllers/audiobook/find-all-chapters-audiobook-id.controller';
+import { UpdateVisibilityAudiobookController } from '@/controllers/audiobook/update-visibility-audiobook.controller';
 import { PrismaService } from '@/prisma/prisma.service';
+import { S3Client } from '@aws-sdk/client-s3';
 import { Module } from '@nestjs/common';
 import { FindOneAudiobookController } from './../controllers/audiobook/find-one-audiobook.controller';
 import { RemoveOneAudiobookController } from './../controllers/audiobook/remove-one-audiobook.controller';
@@ -13,8 +17,10 @@ import { AudiobookService } from './audiobook.service';
     FindAllAudiobooksController,
     UpdateAudiobookController,
     FindOneAudiobookController,
-    RemoveOneAudiobookController
+    RemoveOneAudiobookController,
+    UpdateVisibilityAudiobookController,
+    FindAllChaptersAudiobookIdController,
   ],
-  providers: [AudiobookService, PrismaService],
+  providers: [AudiobookService, PrismaService, ChapterService, S3Client],
 })
 export class AudiobookModule { }

@@ -1,5 +1,6 @@
 import { CreateAudiobookBodySchema } from '@/controllers/audiobook/create-audiobook.controller';
 import { UpdateAudiobookBodySchema } from '@/controllers/audiobook/update-audiobook.controller';
+import { UpdateVisibilityAudiobookBodySchema } from '@/controllers/audiobook/update-visibility-audiobook.controller';
 import { PrismaService } from '@/prisma/prisma.service';
 import { Body, ConflictException, Injectable } from "@nestjs/common";
 
@@ -8,7 +9,7 @@ export class AudiobookService {
   constructor(private prisma: PrismaService) { }
 
   async create(body: CreateAudiobookBodySchema) {
-    const { cover, duration, publisher, sinopse, title } = body
+    const { cover, duration, publisher, linkPurchase, sinopse, title, numberOfChapters, isPrivate } = body
 
     const audiobookWithSameTitle = await this.prisma.audiobook.findUnique({
       where: {
@@ -25,8 +26,11 @@ export class AudiobookService {
         cover,
         duration,
         publisher,
+        linkPurchase,
         sinopse,
-        title
+        title,
+        numberOfChapters,
+        isPrivate
       }
     })
 
@@ -39,6 +43,20 @@ export class AudiobookService {
         chapters: true
       }
     });
+  }
+
+  async findAllChaptersToAudiobookId(audiobookId: string): Promise<any> {
+    const chapters = await this.prisma.chapter.findMany({
+      where: {
+        audiobookId: audiobookId
+      },
+    })
+
+    if (!chapters) {
+      throw new ConflictException('Audiobook with this id does not exist')
+    }
+
+    return chapters
   }
 
   async findOne(id: string) {
@@ -59,7 +77,7 @@ export class AudiobookService {
   }
 
   async update(id: string, @Body() body: UpdateAudiobookBodySchema) {
-    const { cover, duration, publisher, sinopse, title } = body
+    const { cover, duration, publisher, linkPurchase, sinopse, title } = body
 
     const audiobookWithSameTitle = await this.prisma.audiobook.findUnique({
       where: {
@@ -79,10 +97,36 @@ export class AudiobookService {
         cover,
         duration,
         publisher,
+        linkPurchase,
         sinopse,
         title
       }
     });
+  }
+
+  async updateVisibility(id: string, @Body() body: UpdateVisibilityAudiobookBodySchema) {
+    const { isVisible } = body
+
+    const audiobook = await this.prisma.audiobook.findFirst({
+      where: {
+        id
+      }
+    })
+
+    if (!audiobook) {
+      throw new ConflictException('Audiobook with this id does not exist')
+    }
+
+    const audiobookUpdated = await this.prisma.audiobook.update({
+      where: {
+        id
+      },
+      data: {
+        isVisible,
+      }
+    });
+
+    return audiobookUpdated
   }
 
   async remove(id: string) {
