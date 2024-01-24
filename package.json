@@ -18,8 +18,7 @@
     "test:cov": "vitest run --coverage",
     "test:debug": "vitest --inspect-brk --inspect --logHeapUsage --threads=false",
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
-    "vercel-build": "npx prisma migrate deploy",
-    "postinstall": "prisma generate"
+    "vercel-build": "npx prisma migrate deploy"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.481.0",
