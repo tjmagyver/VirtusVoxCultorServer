@@ -20,16 +20,16 @@ export class ChapterService {
     private client: S3Client,
     config: ConfigService<Env, true>
   ) {
-    const AWS_BUCKET_NAME = config.get('AWS_BUCKET_NAME', { infer: true })
-    const AWS_ACCESS_KEY_ID = config.get('AWS_ACCESS_KEY_ID', { infer: true })
-    const AWS_SECRET_ACCESS_KEY = config.get('AWS_SECRET_ACCESS_KEY', { infer: true })
+    const AWS_BUCKET_NAME_ = config.get('AWS_BUCKET_NAME_', { infer: true })
+    const AWS_ACCESS_KEY_ID_ = config.get('AWS_ACCESS_KEY_ID_', { infer: true })
+    const AWS_SECRET_ACCESS_KEY_ = config.get('AWS_SECRET_ACCESS_KEY_', { infer: true })
 
     this.client = new S3Client({
-      endpoint: AWS_BUCKET_NAME,
+      endpoint: AWS_BUCKET_NAME_,
       region: 'us-east-2',
       credentials: {
-        accessKeyId: AWS_ACCESS_KEY_ID,
-        secretAccessKey: AWS_SECRET_ACCESS_KEY,
+        accessKeyId: AWS_ACCESS_KEY_ID_,
+        secretAccessKey: AWS_SECRET_ACCESS_KEY_,
       }
     })
   }
@@ -156,7 +156,7 @@ export class ChapterService {
 
     await this.client.send(
       new PutObjectCommand({
-        Bucket: 'AWS_BUCKET_NAME',
+        Bucket: 'AWS_BUCKET_NAME_',
         Key: uniqueFileName,
         ContentType: fileType,
         Body: body
@@ -170,7 +170,7 @@ export class ChapterService {
 
   async download(fileName: string): Promise<Buffer | any> {
     const file: any = new GetObjectCommand({
-      Bucket: 'AWS_BUCKET_NAME',
+      Bucket: 'AWS_BUCKET_NAME_',
       Key: fileName
     });
 
@@ -190,7 +190,7 @@ export class ChapterService {
     try {
       await this.client.send(
         new DeleteObjectCommand({
-          Bucket: 'AWS_BUCKET_NAME',
+          Bucket: 'AWS_BUCKET_NAME_',
           Key: fileName
         })
       )

@@ -11,7 +11,7 @@ export class StripeService {
     config: ConfigService<Env, true>,
     private prisma: PrismaService,
   ) {
-    const stripeSecretKey = config.get('STRIPE_SECRET_KEY', { infer: true })
+    const stripeSecretKey = config.get('STRIPE_SECRET_KEY_', { infer: true })
 
     this.stripe = new Stripe(stripeSecretKey, {
       apiVersion: '2023-10-16',
