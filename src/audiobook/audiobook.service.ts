@@ -14,8 +14,8 @@ export class AudiobookService {
   async create(body: CreateAudiobookBodySchema) {
     const { cover, duration, publisher, linkPurchase, sinopse, title, numberOfChapters, isPrivate } = body
 
-    const AWS_BUCKET_NAME = this.config.get('AWS_BUCKET_NAME', { infer: true })
-    console.log(AWS_BUCKET_NAME)
+    const AWS_BUCKET_NAME_ = this.config.get('AWS_BUCKET_NAME_', { infer: true })
+    console.log(AWS_BUCKET_NAME_)
     const audiobookWithSameTitle = await this.prisma.audiobook.findUnique({
       where: {
         title
@@ -28,7 +28,7 @@ export class AudiobookService {
 
     const audiobook = await this.prisma.audiobook.create({
       data: {
-        cover: `${AWS_BUCKET_NAME}/AWS_BUCKET_NAME/${cover}`,
+        cover: `${AWS_BUCKET_NAME_}/AWS_BUCKET_NAME_/${cover}`,
         duration,
         publisher,
         linkPurchase,
