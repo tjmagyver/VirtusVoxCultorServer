@@ -29,6 +29,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/passport": "^10.0.3",
     "@prisma/client": "^5.7.0",
+    "@vercel/node": "^3.0.17",
     "aws-sdk": "^2.1526.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
