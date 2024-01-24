@@ -40,7 +40,8 @@
     "rxjs": "^7.8.1",
     "stripe": "^14.11.0",
     "zod": "^3.22.4",
-    "zod-validation-error": "^2.1.0"
+    "zod-validation-error": "^2.1.0",
+    "postinstall": "prisma generate"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
