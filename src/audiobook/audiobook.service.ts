@@ -1,16 +1,21 @@
 import { CreateAudiobookBodySchema } from '@/controllers/audiobook/create-audiobook.controller';
 import { UpdateAudiobookBodySchema } from '@/controllers/audiobook/update-audiobook.controller';
 import { UpdateVisibilityAudiobookBodySchema } from '@/controllers/audiobook/update-visibility-audiobook.controller';
+import { Env } from '@/env';
 import { PrismaService } from '@/prisma/prisma.service';
 import { Body, ConflictException, Injectable } from "@nestjs/common";
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AudiobookService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService, private config: ConfigService<Env, true>) { 
+  }
 
   async create(body: CreateAudiobookBodySchema) {
     const { cover, duration, publisher, linkPurchase, sinopse, title, numberOfChapters, isPrivate } = body
 
+    const AWS_BUCKET_NAME = this.config.get('AWS_BUCKET_NAME', { infer: true })
+    console.log(AWS_BUCKET_NAME)
     const audiobookWithSameTitle = await this.prisma.audiobook.findUnique({
       where: {
         title
@@ -23,7 +28,7 @@ export class AudiobookService {
 
     const audiobook = await this.prisma.audiobook.create({
       data: {
-        cover,
+        cover: `${AWS_BUCKET_NAME}/AWS_BUCKET_NAME/${cover}`,
         duration,
         publisher,
         linkPurchase,

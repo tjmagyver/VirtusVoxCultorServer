@@ -5,7 +5,7 @@ import { ZodValidationPipe } from "src/pipes/zod-validation-pipe";
 import { z } from 'zod';
 
 const createAudiobookBodySchema = z.object({
-  cover: z.string().url(),
+  cover: z.string(),
   duration: z.number(),
   publisher: z.string(),
   linkPurchase: z.string().url(),
