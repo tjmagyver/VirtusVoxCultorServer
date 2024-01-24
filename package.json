@@ -18,7 +18,8 @@
     "test:cov": "vitest run --coverage",
     "test:debug": "vitest --inspect-brk --inspect --logHeapUsage --threads=false",
     "test:e2e": "vitest run --config ./vitest.config.e2e.ts",
-    "vercel-build": "npx prisma migrate deploy"
+    "vercel-build": "npx prisma migrate deploy",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.481.0",
@@ -40,8 +41,7 @@
     "rxjs": "^7.8.1",
     "stripe": "^14.11.0",
     "zod": "^3.22.4",
-    "zod-validation-error": "^2.1.0",
-    "postinstall": "prisma generate"
+    "zod-validation-error": "^2.1.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^10.0.0",
