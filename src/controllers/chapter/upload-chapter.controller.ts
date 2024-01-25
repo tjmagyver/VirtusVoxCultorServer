@@ -13,7 +13,7 @@ export class UploadChapterController {
   async handle(@UploadedFile(
     new ParseFilePipe({
       validators: [
-        new FileTypeValidator({ fileType: '.(wav|mp3|jpeg|png|jpg)' }),
+        new FileTypeValidator({ fileType: '.(audio/wav|audio/mp3|image/jpeg|image/png|image/jpg)' }),
       ],
     }),
   ) file: Express.Multer.File) {
