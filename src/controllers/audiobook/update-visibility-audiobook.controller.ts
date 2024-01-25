@@ -1,7 +1,7 @@
-import { AudiobookService } from "@/audiobook/audiobook.service";
-import { Public } from "@/auth/public";
 import { Body, Controller, Param, Patch } from "@nestjs/common";
 import { z } from 'zod';
+import { AudiobookService } from "../../audiobook/audiobook.service";
+import { Public } from "../../auth/public";
 
 const updateVisibilityAudiobookBodySchema = z.object({
   isVisible: z.boolean(),

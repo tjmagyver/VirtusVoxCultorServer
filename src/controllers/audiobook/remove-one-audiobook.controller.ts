@@ -1,6 +1,6 @@
-import { AudiobookService } from '@/audiobook/audiobook.service';
-import { Public } from '@/auth/public';
 import { Controller, Delete, Param } from "@nestjs/common";
+import { AudiobookService } from '../../audiobook/audiobook.service';
+import { Public } from '../../auth/public';
 
 @Controller('/audiobooks')
 @Public()

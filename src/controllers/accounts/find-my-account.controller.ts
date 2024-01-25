@@ -1,5 +1,5 @@
-import { CurrentUser } from '@/auth/current-user-decorator';
 import { Controller, Get } from "@nestjs/common";
+import { CurrentUser } from '../../auth/current-user-decorator';
 
 @Controller('/me')
 // @Public()

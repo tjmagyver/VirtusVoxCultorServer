@@ -1,7 +1,7 @@
-import { Env } from "@/env";
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from '@nestjs/config';
 import Stripe from "stripe";
+import { Env } from "./env";
 import { PrismaService } from "./prisma/prisma.service";
 
 @Injectable()

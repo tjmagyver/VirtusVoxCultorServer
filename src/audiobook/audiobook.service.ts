@@ -1,14 +1,14 @@
-import { CreateAudiobookBodySchema } from '@/controllers/audiobook/create-audiobook.controller';
-import { UpdateAudiobookBodySchema } from '@/controllers/audiobook/update-audiobook.controller';
-import { UpdateVisibilityAudiobookBodySchema } from '@/controllers/audiobook/update-visibility-audiobook.controller';
-import { Env } from '@/env';
-import { PrismaService } from '@/prisma/prisma.service';
 import { Body, ConflictException, Injectable } from "@nestjs/common";
 import { ConfigService } from '@nestjs/config';
+import { CreateAudiobookBodySchema } from './../controllers/audiobook/create-audiobook.controller';
+import { UpdateAudiobookBodySchema } from './../controllers/audiobook/update-audiobook.controller';
+import { UpdateVisibilityAudiobookBodySchema } from './../controllers/audiobook/update-visibility-audiobook.controller';
+import { Env } from './../env';
+import { PrismaService } from './../prisma/prisma.service';
 
 @Injectable()
 export class AudiobookService {
-  constructor(private prisma: PrismaService, private config: ConfigService<Env, true>) { 
+  constructor(private prisma: PrismaService, private config: ConfigService<Env, true>) {
   }
 
   async create(body: CreateAudiobookBodySchema) {

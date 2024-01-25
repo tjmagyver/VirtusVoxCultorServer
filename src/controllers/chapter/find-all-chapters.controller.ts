@@ -1,6 +1,6 @@
-import { Public } from "@/auth/public";
-import { ChapterService } from "@/chapter/chapter.service";
 import { Controller, Get } from "@nestjs/common";
+import { Public } from "../../auth/public";
+import { ChapterService } from "../../chapter/chapter.service";
 import { ChapterData } from "./find-one-chapter.controller";
 
 @Controller('/chapters')

@@ -1,6 +1,6 @@
-import { AudiobookService } from '@/audiobook/audiobook.service';
-import { Public } from '@/auth/public';
 import { Controller, Get } from "@nestjs/common";
+import { AudiobookService } from '../../audiobook/audiobook.service';
+import { Public } from '../../auth/public';
 
 export type AudiobookData = {
   id: string,

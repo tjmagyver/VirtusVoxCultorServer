@@ -1,8 +1,8 @@
-import { Public } from "@/auth/public";
-import { PrismaService } from "@/prisma/prisma.service";
-import { StripeService } from "@/stripe";
 import { Body, Controller, Post } from "@nestjs/common";
 import { z } from "zod";
+import { Public } from "../../auth/public";
+import { PrismaService } from "../../prisma/prisma.service";
+import { StripeService } from "../../stripe";
 
 const schemaCheckoutSession = z.object({
   productId: z.string(),

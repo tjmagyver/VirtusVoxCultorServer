@@ -1,7 +1,7 @@
-import { Public } from "@/auth/public";
-import { ChapterService } from "@/chapter/chapter.service";
 import { Controller, FileTypeValidator, ParseFilePipe, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { Public } from "../../auth/public";
+import { ChapterService } from "../../chapter/chapter.service";
 
 @Controller('/chapters')
 @Public()

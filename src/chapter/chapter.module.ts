@@ -1,17 +1,17 @@
-import { AudiobookService } from '@/audiobook/audiobook.service';
-import { CreateChapterController } from '@/controllers/chapter/create-chapter.controller';
-import { DeleteFileChapterController } from '@/controllers/chapter/delete-file-chapter.controller';
-import { DownloadChapterController } from '@/controllers/chapter/download-chapter.controller';
-import { FindAllChapertsByAudiobookIdController } from '@/controllers/chapter/find-all-chapters-by-audiobook-id.controller';
-import { FindAllChaptersController } from '@/controllers/chapter/find-all-chapters.controller';
-import { UploadChapterController } from '@/controllers/chapter/upload-chapter.controller';
-import { PrismaService } from '@/prisma/prisma.service';
 import { S3Client } from '@aws-sdk/client-s3';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { AudiobookService } from './../audiobook/audiobook.service';
+import { CreateChapterController } from './../controllers/chapter/create-chapter.controller';
+import { DeleteFileChapterController } from './../controllers/chapter/delete-file-chapter.controller';
+import { DownloadChapterController } from './../controllers/chapter/download-chapter.controller';
+import { FindAllChapertsByAudiobookIdController } from './../controllers/chapter/find-all-chapters-by-audiobook-id.controller';
+import { FindAllChaptersController } from './../controllers/chapter/find-all-chapters.controller';
 import { FindOneChapterController } from './../controllers/chapter/find-one-chapter.controller';
 import { RemoveOneChapterController } from './../controllers/chapter/remove-one-chapter.controller';
 import { UpdateChapterController } from './../controllers/chapter/update-chapter.controller';
+import { UploadChapterController } from './../controllers/chapter/upload-chapter.controller';
+import { PrismaService } from './../prisma/prisma.service';
 import { ChapterService } from './chapter.service';
 
 @Module({

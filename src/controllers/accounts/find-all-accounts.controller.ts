@@ -1,6 +1,6 @@
-import { Public } from '@/auth/public';
-import { PrismaService } from '@/prisma/prisma.service';
 import { ConflictException, Controller, Get } from "@nestjs/common";
+import { Public } from '../../auth/public';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Controller('/accounts')
 @Public()

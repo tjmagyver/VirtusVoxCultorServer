@@ -1,9 +1,9 @@
-import { Public } from '@/auth/public';
-import { PrismaService } from '@/prisma/prisma.service';
 import { Body, ConflictException, Controller, Post, UsePipes } from "@nestjs/common";
 import { hash } from 'bcrypt';
 import { ZodValidationPipe } from "src/pipes/zod-validation-pipe";
 import { z } from 'zod';
+import { Public } from '../../auth/public';
+import { PrismaService } from '../../prisma/prisma.service';
 
 const createAccountBodySchema = z.object({
   name: z.string(),
@@ -24,28 +24,28 @@ export class CreateAccountController {
   async handle(@Body() body: CreateAccountBodySchema) {
     try {
       const { name, email, username, password } = body
-    console.log(name)
+      console.log(name)
 
-    const userWithSameEmail = await this.prisma.user.findUnique({
-      where: {
-        email
+      const userWithSameEmail = await this.prisma.user.findUnique({
+        where: {
+          email
+        }
+      })
+
+      if (userWithSameEmail) {
+        throw new ConflictException('User with same e-mail address already exists')
       }
-    })
 
-    if (userWithSameEmail) {
-      throw new ConflictException('User with same e-mail address already exists')
-    }
+      const hashedPassword = await hash(password, 8)
 
-    const hashedPassword = await hash(password, 8)
-
-    await this.prisma.user.create({
-      data: {
-        name,
-        email,
-        username,
-        password: hashedPassword
-      }
-    })
+      await this.prisma.user.create({
+        data: {
+          name,
+          email,
+          username,
+          password: hashedPassword
+        }
+      })
     } catch (error) {
       console.log(error)
     }

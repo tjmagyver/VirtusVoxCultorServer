@@ -1,8 +1,8 @@
-import { CurrentUser } from "@/auth/current-user-decorator";
-import { Public } from "@/auth/public";
-import { StripeService } from "@/stripe";
 import { Controller, Delete, Param } from "@nestjs/common";
 import { z } from "zod";
+import { CurrentUser } from "../../auth/current-user-decorator";
+import { Public } from "../../auth/public";
+import { StripeService } from "../../stripe";
 
 const schemaDeleteCheckoutSession = z.object({
   subscriptionId: z.string(),

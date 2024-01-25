@@ -1,8 +1,8 @@
-import { Public } from '@/auth/public';
-import { PrismaService } from '@/prisma/prisma.service';
 import { Body, ConflictException, Controller, Param, Patch } from "@nestjs/common";
 import { compare, hash } from 'bcrypt';
 import { z } from 'zod';
+import { Public } from '../../auth/public';
+import { PrismaService } from '../../prisma/prisma.service';
 
 const updatePasswordAccountBodySchema = z.object({
   oldPassword: z.string(),

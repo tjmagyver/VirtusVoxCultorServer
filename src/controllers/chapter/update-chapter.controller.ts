@@ -1,8 +1,8 @@
-import { Public } from "@/auth/public";
-import { ChapterService } from "@/chapter/chapter.service";
 import { Body, Controller, Param, Put, UsePipes } from "@nestjs/common";
 import { ZodValidationPipe } from "src/pipes/zod-validation-pipe";
 import { z } from 'zod';
+import { Public } from "../../auth/public";
+import { ChapterService } from "../../chapter/chapter.service";
 
 const updateChapterBodySchema = z.object({
   audiobookId: z.string(),

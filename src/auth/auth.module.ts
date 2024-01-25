@@ -1,9 +1,9 @@
-import { AuthenticateController } from '@/controllers/auth/authenticate.controller';
-import { Env } from '@/env';
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { AuthenticateController } from './../controllers/auth/authenticate.controller';
+import { Env } from './../env';
 import { PrismaService } from './../prisma/prisma.service';
 import { JwtStrategy } from './jwt.strategy';
 

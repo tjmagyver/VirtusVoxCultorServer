@@ -1,7 +1,7 @@
-import { CurrentUser } from "@/auth/current-user-decorator";
-import { Public } from "@/auth/public";
-import { StripeService } from "@/stripe";
 import { Controller, Get } from "@nestjs/common";
+import { CurrentUser } from "../../auth/current-user-decorator";
+import { Public } from "../../auth/public";
+import { StripeService } from "../../stripe";
 
 @Controller('/checkout-session/find-one')
 @Public()
