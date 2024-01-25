@@ -156,7 +156,7 @@ export class ChapterService {
 
     await this.client.send(
       new PutObjectCommand({
-        Bucket: 'AWS_BUCKET_NAME_',
+        Bucket: 'AWS_BUCKET_NAME',
         Key: uniqueFileName,
         ContentType: fileType,
         Body: body
@@ -170,7 +170,7 @@ export class ChapterService {
 
   async download(fileName: string): Promise<Buffer | any> {
     const file: any = new GetObjectCommand({
-      Bucket: 'AWS_BUCKET_NAME_',
+      Bucket: 'AWS_BUCKET_NAME',
       Key: fileName
     });
 
@@ -190,7 +190,7 @@ export class ChapterService {
     try {
       await this.client.send(
         new DeleteObjectCommand({
-          Bucket: 'AWS_BUCKET_NAME_',
+          Bucket: 'AWS_BUCKET_NAME',
           Key: fileName
         })
       )
