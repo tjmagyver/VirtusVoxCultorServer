@@ -1,6 +1,6 @@
 import { Body, Controller, Post, UsePipes } from "@nestjs/common";
-import { ZodValidationPipe } from "src/pipes/zod-validation-pipe";
 import { z } from 'zod';
+import { ZodValidationPipe } from "../../../src/pipes/zod-validation-pipe";
 import { AudiobookService } from "../../audiobook/audiobook.service";
 import { Public } from "../../auth/public";
 
