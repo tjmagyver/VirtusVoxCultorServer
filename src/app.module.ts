@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { AccountsModule } from './accounts/accounts.module';
 import { AudiobookModule } from './audiobook/audiobook.module';
@@ -24,7 +24,8 @@ import { envSchema } from './env';
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard
-    }
+    },
+    ConfigService
   ]
 })
 export class AppModule { }
