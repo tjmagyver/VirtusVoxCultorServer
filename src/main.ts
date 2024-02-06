@@ -6,7 +6,7 @@ import { Env } from './env';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: '*',
+    origin: 'https://virtus-vox-cultor-web.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   });
   const configService: ConfigService<Env, true> = app.get(ConfigService);
